@@ -4,12 +4,12 @@ import com.pentagon.product.Product;
 
 import java.math.BigDecimal;
 
-public class CartItem {
+public class Item {
     private Product product;
     private int quantity;
     private BigDecimal total;
 
-    public CartItem(Product product) {
+    public Item(Product product) {
         this.product = product;
     }
 

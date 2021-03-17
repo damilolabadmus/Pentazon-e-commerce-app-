@@ -1,3 +1,4 @@
+//Doing a mock of our product database
 package com.pentagon.product;
 
 import com.pentagon.exceptions.ProductException;
@@ -8,11 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ProductRepoMock {
+// Purpose of the ProductDatabase:
+
+public class ProductDatabase {
 
     private Map<String, Product> mockProducts;
 
-    public  ProductRepoMock() {
+    public ProductDatabase() {
         mockProducts = new HashMap<>();
 
         Product plantainChips = new Product("Adunni Chips", "Savoury plantain chips", new BigDecimal(50));

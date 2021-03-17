@@ -62,7 +62,7 @@ class CartTest {
         BigDecimal cartTotal = cart.calculateCartTotal();
         assertEquals(5050, cartTotal.intValue());
 
-        CartItem chipsItem = cart.getItems().get(plantainChips.getProductId());
+        Item chipsItem = cart.getItems().get(plantainChips.getProductId());
         assertEquals(1, chipsItem.getQuantity());
 
         chipsItem = cart.getItems().get(plantainChips.getProductId());

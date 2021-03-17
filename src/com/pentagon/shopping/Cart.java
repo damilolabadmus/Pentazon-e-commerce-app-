@@ -1,22 +1,32 @@
 package com.pentagon.shopping;
 
+import com.pentagon.customer.Address;
 import com.pentagon.exceptions.ProductException;
+import com.pentagon.payments.PaymentCard;
 import com.pentagon.product.Product;
-import com.pentagon.product.ProductRepoMock;
 import com.pentagon.product.ProductService;
 import com.pentagon.product.ProductServiceImpl;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.Bidi;
 import java.util.*;
 import java.util.logging.Logger;
 
 public class Cart {
     private Logger logger = Logger.getLogger(Cart.class.getName());
-    private Map<String, CartItem> items;
+    private Map<String, Item> items;
     private ProductService productService;
     private BigDecimal total = BigDecimal.ZERO;
+    private PaymentCard paymentCard;
+    private Address deliveryAddress;
+
+    public PaymentCard getPaymentCard() {
+        return paymentCard;
+    }
+
+    public void setPaymentCard(PaymentCard paymentCard) {
+        this.paymentCard = paymentCard;
+    }
 
     public Cart() {
         items = new HashMap<>();
@@ -26,9 +36,9 @@ public class Cart {
     public void addtoCart(Product product) {
         if (product != null) {
             if (verifiedProduct(product)) {
-                CartItem item = items.get(product.getProductId());
+                Item item = items.get(product.getProductId());
                 if(item == null) {
-                    item = new CartItem(product);
+                    item = new Item(product);
                 }
                 item.addItems(BigInteger.ONE.intValue());
                 items.put(product.getProductId(), item);
@@ -39,9 +49,9 @@ public class Cart {
     public void addtoCart(Product product, int quantity) {
         if (product != null) {
             if (verifiedProduct(product)) {
-            CartItem item = items.get(product.getProductId());
+            Item item = items.get(product.getProductId());
             if(item == null) {
-                item = new CartItem(product);
+                item = new Item(product);
             }
             item.addItems(quantity);
             items.put(product.getProductId(), item);
@@ -81,7 +91,7 @@ public class Cart {
     public BigDecimal calculateCartTotal() {
         if (!items.isEmpty()) {
             this.total = BigDecimal.ZERO;
-            Iterator<CartItem> cartItems = items.values().iterator();
+            Iterator<Item> cartItems = items.values().iterator();
 
             while(cartItems.hasNext()) {
                this.total = this.total.add(cartItems.next().getTotal());
@@ -91,7 +101,7 @@ public class Cart {
     }
 
 
-    public Map<String, CartItem> getItems() {
+    public Map<String, Item> getItems() {
         return items;
     }
 

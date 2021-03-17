@@ -9,7 +9,7 @@ public class ProductServiceImpl implements ProductService {
      * @return product with specified
      */
 
-    private ProductRepoMock productRepo = new ProductRepoMock();
+    private ProductDatabase productRepo = new ProductDatabase();
 
     @Override
     public  Product findProductById(String productId) throws ProductException {

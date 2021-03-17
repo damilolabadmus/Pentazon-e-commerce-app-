@@ -1,7 +1,7 @@
-package com.pentagon;
+package com.pentagon.customer;
 
 import java.util.List;
-
+// Customer is an abstract class...it's abstract
 public abstract class Customer {
     private Integer id;
     private String firstName;

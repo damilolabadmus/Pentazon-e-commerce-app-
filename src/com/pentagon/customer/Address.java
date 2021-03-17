@@ -1,4 +1,4 @@
-package com.pentagon;
+package com.pentagon.customer;
 
 public class Address {
     private int houseNumber;
